@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lavender Haze — Discos de Vinilo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#inicio" class="logo">
+      <img src="img/logo.png" alt="Lavender Haze" />
+    </a>
+    <nav>
+      <input type="checkbox" id="menu-toggle" hidden />
+      <label for="menu-toggle" class="lista-toggle">&#9776;</label>
+      <ul class="nav-list">
+        <label for="menu-toggle" class="nav-close">&#10005;</label>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#vinilos">Vinilos</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
+        <li><a href="#contacto" class="btn-nav">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- BANNER -->
+  <section class="banner" id="inicio">
+    <div class="solretro" aria-hidden="true">
+      <a class="fondoInicio">
+        <img src="img/fondoInicio.png" alt="Lavender Haze" />
+      </a>
+
+    </div>
+    <div class="banner-content">
+      <p class="lema">Vinilos — Sonido premium</p>
+      <h1 class="textoPrincipal ">El sonido que<br /><em>merece tu colección.</em></h1>
+      <p class="banner-sub">Encontra los mejores clásicos, rarezas y también disfruta de lo nuevo en el mejor formato.
+      </p>
+      <div class="banner-btns">
+        <a href="#vinilos" class="btn">Ver catálogo</a>
+        <a href="#resenas" class="btn">Reseñas</a>
+      </div>
+    </div>
+    <div class="banner-media">
+      <div class="video-wrap">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QILcjT7dFdE?si=fTSxy2QKIbqHToZN&amp;start=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <p class="media-caption">Mirá el proceso de producción de los vinilos</p>
+    </div>
+  </section>
+
+  <!-- VINILOS -->
+  <main>
+    <section class="vinilos" id="vinilos">
+      <div class="section-head">
+        <h2>Catálogo</h2>
+        <p>Géneros para todos los gustos</p>
+      </div>
+      <div class="cards">
+
+        <article class="card card-orange card-new">
+          <div class="card-img">
+            <img src="img/midnights.png" alt="Portada Midnights" />
+          </div>
+          <div class="novedad">Novedad</div>
+          <div class="card-body">
+            <small>Pop</small>
+            <h3>Midnights</h3>
+            <p class="artist">Taylor Swift</p>
+            <p class="descripcion">Una colección de noches de insomnio. El concepto visual y sonoro definitivo del pop
+              moderno.</p>
+            <div class="card-foot">
+              <strong>$112.500</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/rumours.jpg" alt="Portada Rumours" />
+          </div>
+          <div class="card-body">
+            <small>Rock</small>
+            <h3>Rumours</h3>
+            <p class="artist">Fleetwood Mac</p>
+            <p class="descripcion">Armonías vocales perfectas y una producción impecable nacida del caos emocional.</p>
+            <div class="card-foot">
+              <strong>$116.200</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/LedZeppelinIV.png" alt="Portada Led Zeppelin IV" />
+          </div>
+          <div class="card-body">
+            <small>Rock</small>
+            <h3>Led Zeppelin IV</h3>
+            <p class="artist">Led Zeppelin</p>
+            <p class="descripcion">Stairway to Heaven en el formato que merece. Remasterizado.</p>
+            <div class="card-foot">
+              <strong>$97.000</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/SongsFromTheBigChair.png" alt="Portada Songs from the Big Chair" />
+          </div>
+          <div class="card-body">
+            <small>New Wave</small>
+            <h3>Songs from the Big Chair</h3>
+            <p class="artist">Tears for Fears</p>
+            <p class="descripcion">El equilibrio perfecto entre introspección psicológica y el sonido masivo de los 80.
+            </p>
+            <div class="card-foot">
+              <strong>$109.000</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/RandomAccessMemories.png" alt="Portada Random Access Memories" />
+          </div>
+          <div class="card-body">
+            <small>Electrónica</small>
+            <h3>Random Access Memories</h3>
+            <p class="artist">Daft Punk</p>
+            <p class="descripcion">Doble LP. Una carta de amor al pasado en sonido perfecto.</p>
+            <div class="card-foot">
+              <strong>$105.000</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">
+            <img src="img/EattotheBeat.png" alt="Portada Eat to the Beat" />
+          </div>
+          <div class="card-body">
+            <small>Punk Pop</small>
+            <h3>Eat to the Beat</h3>
+            <p class="artist">Blondie</p>
+            <p class="descripcion">Un viaje rítmico que fusiona el rock con los inicios de la música disco.</p>
+            <div class="card-foot">
+              <strong>$97.500</strong>
+              <button class="btn btn-sm">Agregar</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="resenas" id="resenas">
+      <div class="section-head">
+        <h2>Reseñas</h2>
+        <p>Lo que dicen quienes ya escucharon</p>
+      </div>
+      <div class="reviews">
+
+        <blockquote class="review">
+          <div class="stars">★★★★★</div>
+          <p>"Recibí el vinilo en perfecto estado, bien embalado y antes de lo esperado."</p>
+          <footer><strong>Martina G.</strong> — Buenos Aires</footer>
+        </blockquote>
+
+        <blockquote class="review review-wide">
+          <div class="stars">★★★★★</div>
+          <p>"Llevaba años buscando Eat to the Beat en vinilo. Lo encontré acá, a buen precio y con asesoramiento real.
+            Volvería a comprar sin dudarlo."</p>
+          <footer><strong>Diego P.</strong> — Rosario</footer>
+        </blockquote>
+
+        <blockquote class="review">
+          <div class="stars">★★★★☆</div>
+          <p>"Gran selección de jazz. El Kind of Blue llegó en tiempo y forma."</p>
+          <footer><strong>Sofía R.</strong> — Córdoba</footer>
+        </blockquote>
+
+        <blockquote class="review">
+          <div class="stars">★★★★★</div>
+          <p>"Compré tres vinilos y todos llegaron impecables. El packaging es hermoso."</p>
+          <footer><strong>Lucas M.</strong> — Mendoza</footer>
+        </blockquote>
+
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto" id="contacto">
+      <div class="section-head">
+        <h2>Contacto</h2>
+        <p>¿Buscás un vinilo? Escribinos.</p>
+      </div>
+      <form action="https://formspree.io/f/mkoypajw" method="POST">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="¿Qué vinilo buscás?" required></textarea>
+
+        <button type="submit" class="btn btn-full">Enviar mensaje</button>
+        <p class="form-note">Respondemos en menos de 24 hs.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="#footer" class="logo">
+      <img src="img/logo.png" alt="Lavender Haze" />
+    </a>
+    <p>© 2025 Lavender Haze. Hecho con amor analógico.</p>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#vinilos">Vinilos</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </footer>
+
+</body>
+
+</html>

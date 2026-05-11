@@ -1,0 +1,548 @@
+/* ================================
+   LAVENDER HAZE — Estilos Simples
+   ================================ */
+
+/* Fuentes y Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f5ede0;
+  color: #2a1a10;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* === HEADER === */
+.header {
+  background-color: #f5ede0;
+  border-bottom: 3px solid #2a1a10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  position: sticky; z-index: 100;
+  top: 0;
+}
+
+.logo img {
+  height: 60px;
+
+}
+
+/* Nav */
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  align-items: center; gap: 2rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #2a1a10;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Space Mono', monospace; 
+  letter-spacing: .1em; 
+  transition: color .15s;
+}
+.nav-list a:hover { color: #e05c3a; }
+
+
+
+/* === BANNER === */
+.banner {
+  position: relative;
+  overflow: hidden;
+  display: flex; 
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.solretro {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+.solretro svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+}
+
+.fondoInicio {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fondoInicio img {
+  width: 110%;
+  height: auto;
+  opacity: 0.25;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  flex: 1.5;
+  min-width: 500px;
+  color: #7a3b2e;
+}
+
+.lema {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 5px 15px;
+  background-color: #e9cc8f; 
+  border: 2px solid #7a3b2e; 
+  border-radius: 40px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e05c3a;
+}
+
+.textoPrincipal {
+  font-size: 55px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.textoPrincipal em { font-style: normal; 
+  color: #e05c3a; }
+
+
+.banner-sub {
+  max-width: 500px;
+  color: #7a3b2e;
+  margin: 15px 0 30px;
+}
+
+.banner-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.banner-media {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 300px;
+}
+
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%; 
+  border: 3px solid #2a1a10;
+  border-radius: 8px;
+  box-shadow: 6px 6px 0px #2a1a10;
+  overflow: hidden;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.media-caption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #7a3b2e;
+}
+
+
+/* === BOTONES === */
+.btn {
+  background-color: #3d9ea0;
+  color: #f5ede0;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 25px;
+  border: 3px solid #2a1a10;
+  border-radius: 40px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #2a1a10;
+  display: inline-block;
+}
+
+.btn-sm {
+  background-color: #e05c3a;
+  padding: 5px 15px;
+  font-size: 12px;
+}
+.btn-full { background-color: #e05c3a; }
+
+/* === ENCABEZADOS DE SECCIÓN === */
+.section-head { 
+  text-align: center; 
+  margin-bottom: 10px; 
+  font-size: 30px;
+}
+
+.section-head p { 
+  font-size: 11px; 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
+  color: #7a3b2e; opacity: 0.7;
+  margin-top: 2px; 
+}
+
+/* === VINILOS === */
+.vinilos {
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #f6f5f2;
+  border: 3px solid #2a1a10;
+  border-radius: 8px;
+  width: 320px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px #2a1a10;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-new {
+  border-color: #e05c3a;
+  position: relative;
+}
+.card-img {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-bottom: 3px solid #2a1a10;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex; 
+  flex-direction: column; 
+  flex-grow: 1;
+}
+
+.card-body small {
+  color: #3d9ea0;
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.card-body h3 {
+  margin: 5px 0;
+  margin-bottom: 1px;
+}
+
+.artist {
+  color: #7a3b2e;
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.descripcion {
+  color: #555555;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-bottom: 30px;
+}
+
+.card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  border-top: 1px solid #ede0cc;
+  padding-top: 15px;
+}
+
+.card-foot strong {
+  color: #e05c3a;
+  font-size: 20px;
+}
+
+.novedad {
+  position: absolute;
+  top: 15px;      
+  right: 15px;    
+  z-index: 10;    
+  
+  background-color: #e05c3a; 
+  color: white;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid #2a1a10; 
+}
+
+/* === RESEÑAS === */
+.resenas {
+  background-color: #5bbfbf; 
+  border-top: 3px solid #2a1a10;
+  border-bottom: 3px solid #2a1a10;
+  padding: 60px 20px;
+}
+
+.resenas .section-head h2,
+.resenas .section-head p { 
+  color: #f5ede0; 
+  opacity: 1; 
+}
+
+.reviews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.review {
+  background-color: #f5ede0; 
+  border: 3px solid #2a1a10;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0px #2a1a10;
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stars { 
+  color: #e05c3a;
+  font-size: 15px;
+}
+
+.review p { 
+  font-size: 14px;
+  font-style: italic;
+}
+
+.review footer { 
+  font-size: 11px;
+  color: #7a3b2e;
+  border-top: 2px solid #ede0cc;
+  padding-top: 10px;
+  margin-top: auto; 
+}
+
+/* === CONTACTO === */
+.contacto {
+  background-color: #e8c16a;
+  border-bottom: 3px solid #2a1a10;
+  padding: 60px 20px;
+}
+
+.contacto form {
+  max-width: 500px; 
+  margin: 0 auto;
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px;
+}
+
+.contacto label {
+  font-size: 12px; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  color: #7a3b2e;
+}
+
+.contacto input,
+.contacto textarea {
+  width: 100%;
+  background-color: #f5ede0; 
+  border: 3px solid #2a1a10; 
+  border-radius: 8px;
+  padding: 10px 15px; 
+  font-family: inherit; 
+  font-size: 16px; 
+  color: #2a1a10;
+  outline: none; 
+  box-shadow: 4px 4px 0px #2a1a10;
+}
+
+
+.contacto input:focus,
+.contacto textarea:focus { 
+  border-color: #e05c3a; 
+  box-shadow: 4px 4px 0px #e05c3a; 
+}
+
+.contacto textarea { 
+  resize: vertical; 
+  min-height: 120px; 
+}
+
+.form-note { 
+  text-align: center; 
+  font-size: 11px; 
+  color: #7a3b2e; 
+  margin-top: 10px;
+}
+
+/* === FOOTER === */
+.footer {
+  background-color: #2a1a10;
+  color: #f5ede0;
+  padding: 30px;
+  text-align: center;
+}
+.footer p {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.footer a {
+  color: #e05c3a;
+  text-decoration: none;
+  font-weight: bold;    
+}
+
+.footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+.footer ul li a {
+  color: #f5ede0;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: .1em;
+  transition: color .15s;
+}
+.footer ul li a:hover { color: #e05c3a; } 
+
+
+/* Mobile menu */
+.lista-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+.nav-close { display: none; }
+
+/* === RESPONSIVE === */
+
+@media (max-width: 900px) {/* En tablets, las reseñas bajen si no entran */
+  
+  .reviews {
+    flex-wrap: wrap;
+  }
+  .review {
+    width: 45%;
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+
+
+  /* BANNER */
+  .banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .banner-content {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textoPrincipal {
+    font-size: 38px; 
+    line-height: 1.1;
+  }
+
+  .banner-sub {
+    margin: 15px auto 25px; 
+  }
+
+  /* BOTONES */
+  .banner-btns {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .banner-btns .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* VIDEO */
+  .banner-media {
+    width: 100%;
+    flex: none;
+  }
+
+  /* CARDS Y RESEÑAS */
+  .card {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .review {
+    width: 100%;
+  }
+
+  /* FOOTER */
+  .footer ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
