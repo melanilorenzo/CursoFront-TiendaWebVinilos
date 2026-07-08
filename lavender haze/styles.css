@@ -752,20 +752,20 @@ body {
   overflow-y: auto;
 }
 .catalog-screen.open { display: block; }
-
+ 
 .catalog-screen-inner {
   padding: 20px 20px 60px;
 }
-
+ 
 .catalog-screen-inner .cart-volver {
   display: inline-block;
   margin: 20px 0 10px;
 }
-
+ 
 .catalog-screen .vinilos {
   padding-top: 20px;
 }
-
+ 
 /* === SECCION API === */
 .api-section {
   padding: 50px 20px;
@@ -779,6 +779,19 @@ body {
   font-style: italic;
   padding: 30px;
   width: 100%;
+}
+.cargando .btn {
+  margin-top: 15px;
+  font-style: normal;
+}
+.cargando-offline {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.cargando-offline .btn {
+  margin-top: 0;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 /* === ERRORES FORMULARIO === */
