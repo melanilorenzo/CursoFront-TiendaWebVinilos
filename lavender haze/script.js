@@ -237,9 +237,10 @@ async function cargarDesdeAPI() {
 
       // itunes no vende vinilos, generamos uno acorde al rango de precios del resto del catálogo (semilla fija por álbum)
       const semilla = p.collectionId % 25000;
-      const precio = p.collectionPrice
+      const MARKUP = 100000; // recargo fijo que se le suma a todos los precios de la API
+      const precio = (p.collectionPrice
         ? Math.round(p.collectionPrice * 1100)
-        : 92000 + semilla;
+        : 92000 + semilla) + MARKUP;
 
       return `
         <article class="card">
