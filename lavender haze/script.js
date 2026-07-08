@@ -220,62 +220,106 @@ function marcarError(id, msg) {
 
 // ── FETCH API ────────────────────────────────────────
 // consume albumes desde la iTunes Search API y los renderiza como cards
-async function cargarDesdeAPI() {
-  const contenedor = document.getElementById('api-cards');
-  if (!contenedor) return;
-
-  contenedor.innerHTML = '<p class="cargando">Cargando discos...</p>';
-
-  try {
-    const respuesta = await fetch('https://itunes.apple.com/search?term=rock&entity=album&limit=8');
-    const datos = await respuesta.json();
-    const productos = datos.results;
-
-    contenedor.innerHTML = productos.map(p => {
-      // itunes devuelve la portada en 100x100 pero la pido mas grande
-      const img = p.artworkUrl100.replace('100x100bb', '400x400bb');
-
+// como la API de iTunes falla por CORS de forma intermitente (problema documentado
+// del lado de Apple, no del código) → por eso si falla después de varios reintentos,
+// cae en una selección fija para que la sección nunca quede vacía
+ 
+// portada genérica para cuando no hay imagen real
+const PORTADA_GENERICA = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">' +
+  '<rect width="400" height="400" fill="#2a1a10"/>' +
+  '<circle cx="200" cy="200" r="170" fill="#1a1008"/>' +
+  '<circle cx="200" cy="200" r="60" fill="#e05c3a"/>' +
+  '<circle cx="200" cy="200" r="8" fill="#2a1a10"/>' +
+  '</svg>'
+);
+ 
+// selección de respaldo: se usa solo si la API no responde después de reintentar
+const ALBUMES_FALLBACK = [
+  { collectionId: 9001, collectionName: 'The Dark Side of the Moon', artistName: 'Pink Floyd',      primaryGenreName: 'Rock progresivo', artworkUrl100: null, collectionPrice: null },
+  { collectionId: 9002, collectionName: 'Thriller',                  artistName: 'Michael Jackson', primaryGenreName: 'Pop',              artworkUrl100: null, collectionPrice: null },
+  { collectionId: 9003, collectionName: 'Abbey Road',                 artistName: 'The Beatles',     primaryGenreName: 'Rock',             artworkUrl100: null, collectionPrice: null },
+  { collectionId: 9004, collectionName: 'Nevermind',                  artistName: 'Nirvana',         primaryGenreName: 'Grunge',           artworkUrl100: null, collectionPrice: null },
+  { collectionId: 9005, collectionName: 'Blue',                       artistName: 'Joni Mitchell',   primaryGenreName: 'Folk',             artworkUrl100: null, collectionPrice: null },
+  { collectionId: 9006, collectionName: 'Purple Rain',                artistName: 'Prince',          primaryGenreName: 'Funk',             artworkUrl100: null, collectionPrice: null },
+];
+ 
+// arma el HTML de las cards a partir de un array de álbumes (sirve para los de la API y para el fallback)
+function renderAlbumCards(productos) {
+  return productos.map(p => {
+    // itunes devuelve la portada en 100x100, la pedimos más grande; si no hay portada, usamos la genérica
+    const img = p.artworkUrl100
+      ? p.artworkUrl100.replace('100x100bb', '400x400bb')
+      : PORTADA_GENERICA;
       // itunes no vende vinilos, generamos uno acorde al rango de precios del resto del catálogo (semilla fija por álbum)
       const semilla = p.collectionId % 25000;
       const MARKUP = 100000; // recargo fijo que se le suma a todos los precios de la API
       const precio = (p.collectionPrice
         ? Math.round(p.collectionPrice * 1100)
         : 92000 + semilla) + MARKUP;
-
-      return `
-        <article class="card">
-          <div class="card-img">
-            <img src="${img}" alt="Portada ${p.collectionName}" />
+return `
+      <article class="card">
+        <div class="card-img">
+          <img src="${img}" alt="Portada ${p.collectionName}" />
+        </div>
+        <div class="card-body">
+          <small>${p.primaryGenreName}</small>
+          <h3>${p.collectionName}</h3>
+          <p class="artist">${p.artistName}</p>
+          <p class="descripcion">Edición en vinilo de ${p.collectionName}, de ${p.artistName}.</p>
+          <div class="card-foot">
+            <strong>$${precio.toLocaleString('es-AR')}</strong>
+            <button class="btn btn-sm api-btn"
+              data-nombre="${p.collectionName.replace(/"/g, '&quot;')}"
+              data-precio="${precio}"
+              data-img="${img}">Agregar</button>
           </div>
-          <div class="card-body">
-            <small>${p.primaryGenreName}</small>
-            <h3>${p.collectionName}</h3>
-            <p class="artist">${p.artistName}</p>
-            <p class="descripcion">Edición en vinilo de ${p.collectionName}, de ${p.artistName}.</p>
-            <div class="card-foot">
-              <strong>$${precio.toLocaleString('es-AR')}</strong>
-              <button class="btn btn-sm api-btn"
-                data-nombre="${p.collectionName.replace(/"/g, '&quot;')}"
-                data-precio="${precio}"
-                data-img="${img}">Agregar</button>
-            </div>
-          </div>
-        </article>`;
-    }).join('');
-
-    // agregar listeners a los botones generados por JS
-    contenedor.querySelectorAll('.api-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        agregar(btn.dataset.nombre, parseInt(btn.dataset.precio), btn.dataset.img);
-      });
+        </div>
+      </article>`;
+  }).join('');
+}
+ 
+// conecta los botones "Agregar" de las cards recién insertadas
+function activarBotonesApi(contenedor) {
+  contenedor.querySelectorAll('.api-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      agregar(btn.dataset.nombre, parseInt(btn.dataset.precio), btn.dataset.img);
     });
-
+  });
+}
+ 
+async function cargarDesdeAPI(intento = 1) {
+  const contenedor = document.getElementById('api-cards');
+  if (!contenedor) return;
+ 
+  contenedor.innerHTML = '<p class="cargando">Cargando discos...</p>';
+ 
+  try {
+    const respuesta = await fetch('https://itunes.apple.com/search?term=rock&entity=album&limit=8');
+    if (!respuesta.ok) throw new Error('Respuesta HTTP ' + respuesta.status);
+    const datos = await respuesta.json();
+ 
+    contenedor.innerHTML = renderAlbumCards(datos.results);
+    activarBotonesApi(contenedor);
+ 
   } catch (error) {
-    contenedor.innerHTML = '<p class="cargando">No se pudieron cargar los discos.</p>';
-    console.error('Error en fetch:', error);
+    console.error(`Error en fetch (intento ${intento}):`, error);
+ 
+    // la API de iTunes falla seguido por CORS asi que reintenta un par de veces sola
+    if (intento < 5) {
+      setTimeout(() => cargarDesdeAPI(intento + 1), 800);
+      return;
+    }
+ 
+    // si después de reintentar sigue sin responder, se muestra una selección fija
+    // tambien hay opcion de reintentar la conexion real
+    contenedor.innerHTML =
+      '<p class="cargando cargando-offline">No pudimos conectar con la API en este momento — mostrando una selección fija. ' +
+      '<button type="button" class="btn btn-sm" onclick="cargarDesdeAPI()">Reintentar</button></p>' +
+      renderAlbumCards(ALBUMES_FALLBACK);
+    activarBotonesApi(contenedor);
   }
 }
-
 
 // ── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
